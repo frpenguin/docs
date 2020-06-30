@@ -77,7 +77,7 @@ _Note: Only Ubuntu 18.04 and higher is supported for AMD and Intel graphics._
 
 _Note for Intel integrated graphics users: Only Skylake, Kaby Lake, and Coffee Lake offer full Vulkan support. Broadwell, Haswell and Ivy Bridge only offer partial support, which may not work with a lot of games. Sandy Bridge and older lack any Vulkan support whatsoever._
 
-## Arch / Manjaro / Other Arch derivatives:
+## Arch / Arch derivatives:
 
 First, enable multilib.
 
@@ -113,6 +113,60 @@ To install support for Vulkan API  (will be functional only if you have a [Vulka
 
     sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
 
+_Note: Only Skylake, Kaby Lake, and Coffee Lake offer full Vulkan support. Broadwell, Haswell and Ivy Bridge only offer partial support, which may not work with a lot of games. Sandy Bridge and older lack any Vulkan support whatsoever._
+
+## Manjaro
+
+### AMD:
+
+To install support for Vulkan API  (will be functional only if you have a [Vulkan capable GPU](https://en.wikipedia.org/wiki/Vulkan_(API)#Compatibility)) and 32-bit games, execute following command:
+
+```
+pamac install lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
+```
+### Nvidia
+
+_**Warning**: Please ensure your graphics card is supported by modern Nvidia driver before installing._
+_For a list of supported GPUs click here: https://www.nvidia.com/Download/driverResults.aspx/149138/en-us_
+
+Proprietary driver and support for Vulkan are required for proper functionality of games.
+
+Run
+
+```
+sudo mhwd --pci -l -d
+```
+
+to see the available drivers for your system (and if any are installed).
+
+Then install the appropriate drivers by running
+
+```
+sudo mhwd -i pci video-<nvidia-version>
+```
+Next, run the following
+
+```
+pamac install nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader
+```
+You will be prompted to choose the approprate version for your graphics card:
+
+```
+Choose a provider for nvidia-utils:
+1:  nvidia-340xx-utils  340.108-1  extra
+2:  nvidia-390xx-utils  390.132-1  extra
+3:  nvidia-418xx-utils  418.113-2  extra
+4:  nvidia-430xx-utils  430.64-2   extra
+5:  nvidia-435xx-utils  435.21-2   extra
+6:  nvidia-440xx-utils  440.82-1   extra
+```
+### Intel:
+
+To install support for Vulkan API  (will be functional only if you have a [Vulkan capable GPU](https://en.wikipedia.org/wiki/Vulkan_(API)#Compatibility)) and 32-bit games, execute following command
+
+```
+pamac install  lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
+```
 _Note: Only Skylake, Kaby Lake, and Coffee Lake offer full Vulkan support. Broadwell, Haswell and Ivy Bridge only offer partial support, which may not work with a lot of games. Sandy Bridge and older lack any Vulkan support whatsoever._
 
 ## Fedora (Incomplete Guide)
